@@ -18,9 +18,24 @@ let employees = [
 ];
 
 function onReady() {
-
+    renderEmployeeList();
+    console.log('DOM is ready');
+    $('#submitEmployeeButton').on('click', addEmployee)
 }
 
 function renderEmployeeList() {
     $('.employeeList').empty();
+    $('.employeeList').append(`
+    <td>John</td>
+    <td>Doe</td>
+    <td>1234</td>
+    <td>CEO</td>
+    <td>$100,000</td>
+    <td><button>Delete</button></td>
+    `);
+    
+}
+
+function addEmployee() {
+    console.log('employee added');
 }
