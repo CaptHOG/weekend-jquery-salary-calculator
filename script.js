@@ -1,5 +1,7 @@
 $(document).ready(onReady);
 
+let totalMonthlyBudget = 20000;
+
 let employees = [
     {
         firstName: 'John',
@@ -14,6 +16,7 @@ function onReady() {
     renderEmployeeList();
     console.log('DOM is ready');
     $('#submitEmployeeButton').on('click', addEmployee)
+    $('body').on('click', '.deleteEmployeeButton', deleteEmployee)
 }
 
 // re-renders the table body
@@ -28,7 +31,7 @@ function renderEmployeeList() {
                 <td>${employees[i].idNumber}</td>
                 <td>${employees[i].title}</td>
                 <td>${employees[i].annualSalary}</td>
-                <td><button>Delete</button></td>
+                <td><button class="deleteEmployeeButton">Delete</button></td>
             </tr>
             `);
         } else {
@@ -39,7 +42,7 @@ function renderEmployeeList() {
                 <td>${employees[i].idNumber}</td>
                 <td>${employees[i].title}</td>
                 <td>${employees[i].annualSalary}</td>
-                <td><button>Delete</button></td>
+                <td><button class="deleteEmployeeButton">Delete</button></td>
             </tr>
             `);
         }
@@ -75,4 +78,10 @@ function addEmployee() {
 
     console.log(newEmployee);
     // console.log(employees);
+}
+
+function deleteEmployee() {
+    console.log('employee deleted');
+    let tableRowToDelete = $(this).parent().parent();
+    tableRowToDelete.remove();
 }
