@@ -13,30 +13,36 @@
     <header>
         <h1>Salary Calculator</h1>
     </header>
-    <h2>Add Employee</h2>
-    <input id="firstNameInput" type="text" placeholder="First Name">
-    <input id="lastNameInput" type="text" placeholder="Last Name">
-    <input id="idInput" type="number" placeholder="ID">
-    <input id="titleInput" type="text" placeholder="Title">
-    <input id="annualSalaryInput" type="number" placeholder="Annual Salary">
-    <button id="submitEmployeeButton">Submit</button>
-    <h2>Employees</h2>
-    <table>
-      <thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Annual Salary</th>
-            <th></th>
-        </tr>
-      </thead>
-      <tbody class="employeeList">
-        <tr>
-        </tr>
-      </tbody>
-    </table>
-    <h2>Total Monthly Budget:<span id="totalMonthlyBudgetSpan"></span></h2>
+<main>
+    <section id="employeeInputs">
+        <h2>Add Employee</h2>
+        <input id="firstNameInput" type="text" placeholder="First Name">
+        <input id="lastNameInput" type="text" placeholder="Last Name">
+        <input id="idInput" type="number" placeholder="ID">
+        <input id="titleInput" type="text" placeholder="Title">
+        <input id="annualSalaryInput" type="number" placeholder="Annual Salary">
+        <button id="submitEmployeeButton">Submit</button>
+    </section>
+    <section id="employeeTable">
+        <h2>Employees</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Annual Salary</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody class="employeeList">
+            <tr>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+    <h2 id="totalMonthly">Total Monthly Budget:<span id="totalMonthlyBudgetSpan"></span></h2>
+</main>
 </body>
 </html>

@@ -37,11 +37,11 @@ function renderEmployeeList() {
         if (i === 0) {
             $('.employeeList').append(`
             <tr>
-                <td>${employees[i].firstName}</td>
-                <td>${employees[i].lastName}</td>
-                <td><span class="listedEmployeeIdSpan">${employees[i].idNumber}</span></td>
-                <td>${employees[i].title}</td>
-                <td><span id="listedEmployeeAnnualSalarySpan">${dollarUS.format(employees[i].annualSalary)}</span></td>
+                <td class="tdCell">${employees[i].firstName}</td>
+                <td class="tdCell">${employees[i].lastName}</td>
+                <td class="tdCell"><span class="listedEmployeeIdSpan">${employees[i].idNumber}</span></td>
+                <td class="tdCell">${employees[i].title}</td>
+                <td class="tdCell"><span id="listedEmployeeAnnualSalarySpan">${dollarUS.format(employees[i].annualSalary)}</span></td>
                 <td>
                     <button class="deleteEmployeeButton">Delete</button>
                 </td>
@@ -50,11 +50,11 @@ function renderEmployeeList() {
         } else {
             $('.employeeList').append(`
             <tr>
-                <td>${employees[i].firstName}</td>
-                <td>${employees[i].lastName}</td>
-                <td><span class="listedEmployeeIdSpan">${employees[i].idNumber}</span></td>
-                <td>${employees[i].title}</td>
-                <td><span id="listedEmployeeAnnualSalarySpan">${dollarUS.format(employees[i].annualSalary)}</span></td>
+                <td class="tdCell">${employees[i].firstName}</td>
+                <td class="tdCell">${employees[i].lastName}</td>
+                <td class="tdCell"><span class="listedEmployeeIdSpan">${employees[i].idNumber}</span></td>
+                <td class="tdCell">${employees[i].title}</td>
+                <td class="tdCell"><span id="listedEmployeeAnnualSalarySpan">${dollarUS.format(employees[i].annualSalary)}</span></td>
                 <td>
                     <button class="deleteEmployeeButton">Delete</button>
                 </td>
@@ -104,7 +104,7 @@ function deleteEmployee() {
     let listedEmployeeIdNumber = Number(listedEmployeeIdNumberText);
     tableRowToDelete.remove();
     let employeesKept = [];
-    console.log(listedEmployeeIdNumber);
+    console.log('ID:', listedEmployeeIdNumber);
     for (let employee of employees) {
         if (listedEmployeeIdNumber !== employee.idNumber) {
             employeesKept.push(employee);
