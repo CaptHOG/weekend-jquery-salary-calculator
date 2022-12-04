@@ -25,7 +25,7 @@ function renderEmployeeList() {
             <tr>
                 <td>${employees[i].firstName}</td>
                 <td>${employees[i].lastName}</td>
-                <td>${employees[i].idNumber}</td>
+                <td><span class="listedEmployeeIdSpan">${employees[i].idNumber}</span></td>
                 <td>${employees[i].title}</td>
                 <td><span id="listedEmployeeAnnualSalarySpan">${employees[i].annualSalary}</span></td>
                 <td>
@@ -38,7 +38,7 @@ function renderEmployeeList() {
             <tr>
                 <td>${employees[i].firstName}</td>
                 <td>${employees[i].lastName}</td>
-                <td>${employees[i].idNumber}</td>
+                <td><span class="listedEmployeeIdSpan">${employees[i].idNumber}</span></td>
                 <td>${employees[i].title}</td>
                 <td><span id="listedEmployeeAnnualSalarySpan">${employees[i].annualSalary}</span></td>
                 <td>
@@ -88,9 +88,37 @@ function addEmployee() {
 
 // removes employee info from table
 function deleteEmployee() {
-    console.log('employee deleted');
     let tableRowToDelete = $(this).parent().parent();
+    let listedEmployeeIdNumberText = tableRowToDelete.find('.listedEmployeeIdSpan').text();
+    let listedEmployeeIdNumber = Number(listedEmployeeIdNumberText);
     tableRowToDelete.remove();
+    let employeesKept = [];
+    console.log(listedEmployeeIdNumber);
+    for (let employee of employees) {
+        if (listedEmployeeIdNumber !== employee.idNumber) {
+            employeesKept.push(employee);
+        }
+    }
+    employees = employeesKept;
+    renderEmployeeList();
+    
+    console.log(employees);
+    console.log(employeesKept);
+    console.log('employee deleted');
+    // let employeesListed = [];
+    // let listedEmployeeIdNumber = Number($('#employeeIdNumber').text());
+   
+    //     for (i=0; i<employees.length; i++) {
+    //         if (employees[i].idNumber !== listedEmployeeIdNumber) {
+    //             let tableRowToDelete = $(this).parent().parent();
+    //             tableRowToDelete.remove();
+    //             employeesListed.push(employees[i]);
+    //         }
+    //         console.log('employee ID number value is:', employees[i].idNumber);
+    //         console.log('listed employee ID number is:', listedEmployeeIdNumber);
+    //     }
+    
+    // console.log(employeesListed);
 }
 
 
