@@ -1,8 +1,7 @@
 $(document).ready(onReady);
 
 
-let currentMonthlyBudget = 20000;
-console.log('current monthly budget:', currentMonthlyBudget);
+let currentMonthlyBudget = 20000.00;
 
 
 let employees = [
@@ -18,10 +17,11 @@ let employees = [
 
 function onReady() {
     renderEmployeeList();
+    renderMonthlyBudget();
     console.log('DOM is ready');
     $('#submitEmployeeButton').on('click', addEmployee);
     $('body').on('click', '.deleteEmployeeButton', deleteEmployee);
-    //$('#totalMonthlyBudgetSpan').text('20,000.00');
+    //$('#totalMonthlyBudgetSpan').text('20000.00');
 }
 
 
@@ -36,8 +36,10 @@ function renderEmployeeList() {
                 <td>${employees[i].lastName}</td>
                 <td>${employees[i].idNumber}</td>
                 <td>${employees[i].title}</td>
-                <td>${employees[i].annualSalary}</td>
-                <td><button class="deleteEmployeeButton">Delete</button></td>
+                <td><span id="listedEmployeeAnnualSalarySpan">${employees[i].annualSalary}</span></td>
+                <td>
+                    <button class="deleteEmployeeButton">Delete</button>
+                </td>
             </tr>
             `);
         } else {
@@ -47,8 +49,10 @@ function renderEmployeeList() {
                 <td>${employees[i].lastName}</td>
                 <td>${employees[i].idNumber}</td>
                 <td>${employees[i].title}</td>
-                <td>${employees[i].annualSalary}</td>
-                <td><button class="deleteEmployeeButton">Delete</button></td>
+                <td><span id="listedEmployeeAnnualSalarySpan">${employees[i].annualSalary}</span></td>
+                <td>
+                    <button class="deleteEmployeeButton">Delete</button>
+                </td>
             </tr>
             `);
         }
@@ -80,6 +84,7 @@ function addEmployee() {
     calculateMonthlyCostOfEmployee();
 
     renderEmployeeList();
+    renderMonthlyBudget();
 
     $('#firstNameInput').val('');
     $('#lastNameInput').val('');
@@ -101,17 +106,22 @@ function deleteEmployee() {
 
 // calculates monthly cost of employee
 function calculateMonthlyCostOfEmployee() {
-    let annualSalary = Number($('#annualSalaryInput').val());
-    let monthlyCostOfEmployee = Math.floor(annualSalary / 12);
+    console.log('in calculateMonthlyCostOfEmployee()');
+    let annualSalaryInput = Number($('#annualSalaryInput').val());
+    let monthlyCostOfEmployee = Math.floor(annualSalaryInput / 12);
+
+    console.log('annual salary is:', Math.floor(annualSalaryInput));
+
     currentMonthlyBudget -= monthlyCostOfEmployee;
     console.log('monthly cost of this employee is:', monthlyCostOfEmployee);
-    console.log('current monthly budget:', currentMonthlyBudget);
+    //console.log('current monthly budget:', currentMonthlyBudget);
     return monthlyCostOfEmployee;
 }
 
 
-// function calculateCurrentMonthlyBudget() {
-//     currentMonthlyBudget -= monthlyCostOfEmployee;
-//     console.log('current monthly budget:', currentMonthlyBudget);
-// }
-// calculateCurrentMonthlyBudget();
+function renderMonthlyBudget() {
+    $('#totalMonthlyBudgetSpan').empty();
+    $('#totalMonthlyBudgetSpan').append(`
+        <span id="totalMonthlyBudgetSpan">${currentMonthlyBudget}</span>`);
+    console.log('current monthly budget:', currentMonthlyBudget);
+}
