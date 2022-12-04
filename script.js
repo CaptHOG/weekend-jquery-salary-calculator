@@ -4,15 +4,7 @@ $(document).ready(onReady);
 let currentMonthlyBudget = 20000.00;
 
 
-let employees = [
-    {
-        firstName: 'John',
-        lastName: 'Doe',
-        idNumber: 123,
-        title: 'CEO',
-        annualSalary: 100000
-    }
-];
+let employees = [];
 
 
 function onReady() {
@@ -21,7 +13,6 @@ function onReady() {
     console.log('DOM is ready');
     $('#submitEmployeeButton').on('click', addEmployee);
     $('body').on('click', '.deleteEmployeeButton', deleteEmployee);
-    //$('#totalMonthlyBudgetSpan').text('20000.00');
 }
 
 
@@ -61,8 +52,7 @@ function renderEmployeeList() {
 }
 
 
-// adds new employee info to employees array and
-// logs out monthly employee cost
+// adds new employee to the list of employees
 function addEmployee() {
     console.log('employee added');
     let newFirstName = $('#firstNameInput').val();
@@ -104,9 +94,8 @@ function deleteEmployee() {
 }
 
 
-// calculates monthly cost of employee
+// subtracts monthly employee cost from total monthly budget
 function calculateMonthlyCostOfEmployee() {
-    console.log('in calculateMonthlyCostOfEmployee()');
     let annualSalaryInput = Number($('#annualSalaryInput').val());
     let monthlyCostOfEmployee = Math.floor(annualSalaryInput / 12);
 
@@ -114,14 +103,21 @@ function calculateMonthlyCostOfEmployee() {
 
     currentMonthlyBudget -= monthlyCostOfEmployee;
     console.log('monthly cost of this employee is:', monthlyCostOfEmployee);
-    //console.log('current monthly budget:', currentMonthlyBudget);
     return monthlyCostOfEmployee;
 }
 
 
+// renders total monthly budget
 function renderMonthlyBudget() {
     $('#totalMonthlyBudgetSpan').empty();
-    $('#totalMonthlyBudgetSpan').append(`
-        <span id="totalMonthlyBudgetSpan">${currentMonthlyBudget}</span>`);
     console.log('current monthly budget:', currentMonthlyBudget);
+
+    if (currentMonthlyBudget <= 0) {
+        $('#totalMonthlyBudgetSpan').css('color', 'red');
+        $('#totalMonthlyBudgetSpan').append(`
+        <span id="totalMonthlyBudgetSpan">${currentMonthlyBudget} OVER BUDGET!</span>`);
+    } else {
+        $('#totalMonthlyBudgetSpan').append(`
+        <span id="totalMonthlyBudgetSpan">${currentMonthlyBudget}</span>`);
+    }
 }
